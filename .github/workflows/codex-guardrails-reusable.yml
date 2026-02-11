@@ -1,0 +1,32 @@
+name: codex-guardrails-reusable
+
+on:
+  workflow_call:
+    inputs:
+      enforcement_mode:
+        required: false
+        type: string
+        default: enforce
+      project_type:
+        required: false
+        type: string
+        default: mixed
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    env:
+      CODEX_ENFORCEMENT_MODE: ${{ inputs.enforcement_mode }}
+      CODEX_PROJECT_TYPE: ${{ inputs.project_type }}
+    steps:
+      - name: Checkout caller repository
+        uses: actions/checkout@v4
+
+      - name: App checks
+        run: scripts/check-app.sh
+
+      - name: IaC checks
+        run: scripts/check-iac.sh
+
+      - name: DB migration checks
+        run: scripts/check-db-migrations.sh

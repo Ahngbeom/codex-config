@@ -1,0 +1,14 @@
+name: codex-guardrails
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  guardrails:
+    uses: Ahngbeom/codex-config/.github/workflows/codex-guardrails-reusable.yml@__CODEX_CONFIG_REF__
+    with:
+      enforcement_mode: __ENFORCEMENT_MODE__
+      project_type: __PROJECT_TYPE__

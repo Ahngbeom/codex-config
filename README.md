@@ -8,17 +8,28 @@ This repository provides a baseline Codex operating setup for app, infra, and DB
   - `skills/app-dev/SKILL.md`
   - `skills/infra-ops/SKILL.md`
   - `skills/dba-ops/SKILL.md`
-- CI guardrails workflow: `.github/workflows/codex-guardrails.yml`
+- CI guardrails workflows:
+  - Reusable: `.github/workflows/codex-guardrails-reusable.yml`
+  - Local caller: `.github/workflows/codex-guardrails.yml`
 - Validation scripts:
   - `scripts/check-app.sh`
   - `scripts/check-iac.sh`
   - `scripts/check-db-migrations.sh`
+- Multi-repo sync tooling:
+  - Inventory: `config/repos.txt`
+  - Sync script: `scripts/sync-codex-config.sh`
+  - Scenario verifier: `scripts/verify-sync-scenarios.sh`
+  - Caller workflow template: `templates/workflows/codex-guardrails.yml`
+  - Custom script templates: `templates/scripts/*.sh`
 
-## Customize for your projects
-- Add `scripts/app-check.sh` for lint/unit/integration checks.
-- Add `scripts/iac-check.sh` and `scripts/iac-plan.sh` for environment-specific Terraform checks.
-  - If Terraform files exist, `scripts/iac-plan.sh` is required.
-- Add `scripts/db-check.sh` if your migration framework needs custom validation.
+## Stage modes
+- `CODEX_ENFORCEMENT_MODE=warn`: Stage 1 visibility mode (non-blocking warnings).
+- `CODEX_ENFORCEMENT_MODE=enforce`: Stage 2 enforcement mode (blocking failures).
 
-## Goal
-Move from ad-hoc code generation to verified, auditable automation.
+## Multi-repo usage
+1. Register target repos in `config/repos.txt` (`path|project_type|stage`).
+2. Preview changes: `scripts/sync-codex-config.sh --plan`
+3. Apply changes: `scripts/sync-codex-config.sh --apply`
+4. Validate behavior: `scripts/verify-sync-scenarios.sh`
+
+See detailed runbook: `docs/multirepo-sync-guide-ko.md`.

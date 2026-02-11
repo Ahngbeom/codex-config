@@ -7,17 +7,8 @@ on:
       - main
 
 jobs:
-  checks:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: App checks
-        run: scripts/check-app.sh
-
-      - name: IaC checks
-        run: scripts/check-iac.sh
-
-      - name: DB migration checks
-        run: scripts/check-db-migrations.sh
+  guardrails:
+    uses: ./.github/workflows/codex-guardrails-reusable.yml
+    with:
+      enforcement_mode: enforce
+      project_type: mixed

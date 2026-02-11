@@ -1,0 +1,8 @@
+# path|project_type|stage
+# stage: 1 (warn) or 2 (enforce)
+#
+# Examples:
+# ../service-web|app|1
+# ../infra-live|infra|1
+# ../backend-db|db|2
+# ../platform-monorepo|mixed|2
