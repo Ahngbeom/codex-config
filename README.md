@@ -17,6 +17,7 @@ This repository provides a baseline Codex operating setup for app, infra, and DB
   - `scripts/check-db-migrations.sh`
 - Multi-repo sync tooling:
   - Inventory: `config/repos.txt`
+  - Local inventory example: `config/repos.local.example.txt`
   - Sync script: `scripts/sync-codex-config.sh`
   - Scenario verifier: `scripts/verify-sync-scenarios.sh`
   - Caller workflow template: `templates/workflows/codex-guardrails.yml`
@@ -32,4 +33,4 @@ This repository provides a baseline Codex operating setup for app, infra, and DB
 3. Apply changes: `scripts/sync-codex-config.sh --apply`
 4. Validate behavior: `scripts/verify-sync-scenarios.sh`
 
-See detailed runbook: `docs/multirepo-sync-guide-ko.md`.
+For per-developer local Codex CLI setup, see: `docs/multirepo-sync-guide-ko.md`.

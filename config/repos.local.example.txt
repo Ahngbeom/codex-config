@@ -1,0 +1,8 @@
+# 개인 로컬 환경 전용 인벤토리 예시
+# 형식: path|project_type|stage
+# path는 각 개발자 로컬 절대 경로를 사용
+
+/Users/<user>/workspace/service-web|app|1
+/Users/<user>/workspace/infra-live|infra|1
+/Users/<user>/workspace/backend-db|db|2
+/Users/<user>/workspace/platform|mixed|2
